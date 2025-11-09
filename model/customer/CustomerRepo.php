@@ -28,7 +28,6 @@ class CustomerRepo
 
     function find($id)
     {
-        global $conn;
         $condition = "id = $id";
         $customers = $this->fetchAll($condition);
         $customer = current($customers);
@@ -37,7 +36,6 @@ class CustomerRepo
 
     function findEmail($email)
     {
-        global $conn;
         $condition = "email = '$email'";
         $customers = $this->fetchAll($condition);
         $customer = current($customers);
@@ -51,7 +49,7 @@ class CustomerRepo
         $email = $data["email"];
         $phone = $data["phone"];
         $birthday = $data["birthday"];
-        $verified = $data["verified"];
+        $verified = $data["verified"] ?? 0;
         $password = $data["password"];
         $shipping_name = $data["shipping_name"];
         $shipping_phone = $data["shipping_phone"];

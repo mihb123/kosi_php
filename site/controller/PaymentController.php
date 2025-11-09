@@ -14,9 +14,15 @@ class PaymentController
         $cart = $cartRepo->fetch();
         $items = $cart->getItems();
         $Total = $cart->getTotal();
-
-        require 'layout/variable_address.php';
-        require 'view/viewPayment.php';
+        if(!$customer){
+            $_SESSION['error'] = 'Vui lòng đăng nhập để thanh toán';
+            header('Location: ?c=home');
+            exit;
+        }else{
+            require 'layout/variable_address.php';
+            require 'view/viewPayment.php';
+        }
+        
     }
 
     function order()
@@ -24,7 +30,6 @@ class PaymentController
         $cartRepo = new CartRepo;
         $cart = $cartRepo->fetch();
         if ($cart->getQty() == 0) {
-            // gior hang empty
             $_SESSION['error'] = 'Giỏ hàng rỗng';
             header('Location: ?c=product');
             exit;

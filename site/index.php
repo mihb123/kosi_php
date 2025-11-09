@@ -3,7 +3,6 @@ session_start();
 require '../vendor/autoload.php';
 // c là controller
 // a là action
-// controller student là mặc định
 // method index là mặc đinh
 $c = $_GET['c'] ?? 'home';
 $a = $_GET['a'] ?? 'index';
